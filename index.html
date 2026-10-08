@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jana Mostafa | Content Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=Yellowtail&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff; --blush:#FFE6F0; --pink:#FF9EC4; --hot:#FF4F93; --rose:#4A1230;
+  --glass:.8;                                   /* glass intensity: 0 to 1 */
+  --glow:.4;                                    /* heading glow: 0 to 1 */
+  --motion:.4;                                  /* scroll motion blur: 0 to 1 */
+  --blur:calc(26px * var(--glass));
+  --tint:rgba(255,255,255,calc(.5 * var(--glass)));
+  --edge:rgba(255,255,255,calc(.9 * var(--glass)));
+  --disp:'Bricolage Grotesque',Tahoma,sans-serif; --body:'Figtree',Tahoma,sans-serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:6rem;height:100%}
+body{background:var(--white);color:var(--rose);font-family:var(--body);line-height:1.7;overflow-x:hidden;min-height:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+
+/* living background so the glass has something to bend */
+.bg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,#fff,var(--blush) 60%,#fff);overflow:hidden}
+.bg i{position:absolute;border-radius:50%;filter:blur(50px);opacity:.85;animation:drift 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:42vmax;height:42vmax;background:var(--pink);top:-10vmax;left:-8vmax}
+.bg i:nth-child(2){width:34vmax;height:34vmax;background:var(--hot);opacity:.5;bottom:-8vmax;right:-6vmax;animation-delay:-6s}
+.bg i:nth-child(3){width:26vmax;height:26vmax;background:#ffc2dc;top:35%;left:48%;animation-delay:-11s}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+
+/* liquid glass */
+.glass{
+  background:linear-gradient(135deg,rgba(255,255,255,calc(.7*var(--glass))),var(--tint) 45%,rgba(255,255,255,calc(.25*var(--glass))));
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(180%);backdrop-filter:blur(var(--blur)) saturate(180%);
+  border:1px solid var(--edge);
+  box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -2px 6px rgba(255,79,147,.12),0 10px 40px rgba(255,79,147,.18);
+}
+
+/* navbar */
+.nav{position:fixed;top:calc(env(safe-area-inset-top,0px) + .9rem);left:50%;transform:translateX(-50%);z-index:20;
+  display:flex;align-items:center;gap:.3rem;padding:.4rem;border-radius:99px;max-width:calc(100vw - 1.6rem)}
+.nav a{padding:.55rem 1.3rem;border-radius:99px;font-weight:600;font-size:.98rem;white-space:nowrap;transition:background .25s,color .25s}
+.nav a:hover,.nav a.on{background:var(--hot);color:#fff}
+
+/* hero */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:6rem 1rem 3rem;position:relative}
+.hero-in{position:relative}
+.tag{display:inline-block;padding:.4rem 1.2rem;border-radius:99px;font-weight:600;margin-bottom:1rem}
+.name{font-family:var(--disp);font-weight:800;font-size:clamp(4.2rem,21vw,17rem);line-height:.86;letter-spacing:-.05em;color:var(--hot);user-select:none}
+.name span{display:block;font-family:'Yellowtail','Brush Script MT',cursive;font-weight:400;font-size:.27em;letter-spacing:.01em;line-height:1;color:#0a0a0a;margin-top:.08em;transform:rotate(-4deg)}
+.sub{margin-top:1.5rem;font-size:clamp(1.05rem,2.4vw,1.4rem);max-width:30ch;margin-inline:auto;font-weight:500}
+.cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem;position:relative;z-index:4}
+.btn{padding:.8rem 1.8rem;border-radius:99px;font-weight:600;font-size:1.05rem;transition:transform .25s}
+.btn:hover{transform:translateY(-3px)}
+.cta .wa{background:var(--hot);color:#fff;border:1px solid transparent;box-shadow:0 10px 30px rgba(255,79,147,.35)}
+.lens{position:absolute;left:0;top:0;width:clamp(3.6rem,8.8vw,6rem);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:3;
+  background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.75),rgba(255,255,255,.08) 45%,rgba(255,255,255,.28));
+  -webkit-backdrop-filter:blur(2px) saturate(220%) contrast(1.1);backdrop-filter:blur(2px) saturate(220%) contrast(1.1);
+  border:1.5px solid rgba(255,255,255,.95);
+  box-shadow:inset 0 3px 8px rgba(255,255,255,.95),inset 0 -10px 24px rgba(255,79,147,.3),0 18px 40px rgba(255,79,147,.3);
+  transform:translate(-50%,-50%);will-change:left,top}
+
+/* sections */
+section{max-width:1100px;margin-inline:auto;padding:clamp(3rem,9vw,6rem) 1.2rem}
+h2{display:inline-block;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.1;letter-spacing:.005em;padding:.4rem 1.8rem .55rem;border-radius:99px;margin-bottom:1.6rem;color:var(--hot);text-shadow:0 0 calc(34px*var(--glow)) rgba(255,79,147,.95),0 0 calc(14px*var(--glow)) rgba(255,79,147,.8),0 0 calc(5px*var(--glow)) rgba(255,120,175,.9);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -2px 6px rgba(255,79,147,.12),0 0 calc(60px*var(--glow)) rgba(255,79,147,.45)}
+.about-card{border-radius:2rem;padding:clamp(1.6rem,5vw,3.5rem)}
+.about-card p{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:62ch}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.2rem}
+.sk{border-radius:1.8rem;padding:1.6rem}
+.sk h3{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.7rem;font-weight:700;color:var(--hot);margin-bottom:.9rem;text-shadow:0 0 calc(24px*var(--glow)) rgba(255,79,147,.9),0 0 calc(8px*var(--glow)) rgba(255,79,147,.8)}
+.sk ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.sk li{padding:.35rem 1rem;border-radius:99px;background:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.95);box-shadow:inset 0 1px 1px #fff,0 2px 10px rgba(255,79,147,.12);font-weight:500;transition:background .25s,color .25s}
+.sk li:hover{background:var(--hot);color:#fff}
+.reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.2rem}
+.reel{border-radius:1.8rem;aspect-ratio:9/13;padding:1.3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.reel:hover{transform:translateY(-8px) rotate(-1.5deg)}
+.reel::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--pink);filter:blur(30px);opacity:.7;z-index:-1;
+  right:-15%;bottom:-10%;transition:transform .5s}
+.reel:nth-child(2)::before{background:var(--hot);opacity:.4;right:auto;left:-15%;top:-10%;bottom:auto}
+.reel:nth-child(3)::before{background:#ffc2dc}
+.reel:hover::before{transform:scale(1.4)}
+.play{width:4rem;height:4rem;border-radius:50%;display:grid;place-items:center;font-size:1.2rem;color:var(--hot);padding-left:4px;margin:auto}
+.reel b{font-family:var(--disp);font-size:1.5rem;font-weight:800}
+.reel small{display:block;font-size:.95rem;opacity:.75}
+
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.2rem}
+.c{border-radius:1.8rem;padding:1.8rem;display:flex;flex-direction:column;gap:.4rem;transition:transform .3s}
+.c:hover{transform:translateY(-6px)}
+.c span{font-weight:600;opacity:.7}
+.c strong{font-family:var(--disp);font-size:clamp(1.2rem,3vw,1.7rem);overflow-wrap:anywhere;line-height:1.25}
+.wa{background:var(--hot);color:#fff;border-color:transparent}
+.wa span{opacity:.85}
+footer{text-align:center;padding:2.5rem 1rem;opacity:.7}
+
+/* scroll motion blur (only while moving) */
+html.moving section>*,html.moving .hero-in>*:not(.lens){filter:blur(var(--mb,0px))}
+@media (max-width:520px){.nav a{padding:.5rem .85rem;font-size:.9rem}}
+@media (prefers-reduced-motion:reduce){html.moving section>*,html.moving .hero-in>*{filter:none!important}*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<nav class="nav glass" aria-label="Main">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#contact">Contact</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-in" id="heroIn">
+    <span class="tag glass">Content Creator</span>
+    <h1 class="name">Jana<span>Mostafa</span></h1>
+    <p class="sub">Ideas that look good, feel real, and stay with you.</p>
+    <div class="cta"><a class="btn glass" href="#work">My Work</a><a class="btn wa" href="https://wa.me/201212054769" target="_blank" rel="noopener">WhatsApp Me</a></div>
+    <div class="lens" id="lens" aria-hidden="true"></div>
+  </div>
+</header>
+
+<section id="about">
+  <h2 class="glass">About</h2>
+  <div class="about-card glass">
+    <p>I’m Jana, a creative and curious person who finds inspiration in everything around me. I’ve always enjoyed expressing my ideas through visuals and discovering new ways to bring creative concepts to life. My passion for content creation motivates me to constantly learn, experiment, and explore new trends and tools. I believe that creativity is about more than just making something look good—it’s about creating something that feels authentic, tells a story, and leaves an impression.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="glass">Skills</h2>
+  <div class="skills">
+    <div class="sk glass"><h3>Creative</h3><ul>
+      <li>Content Creation</li><li>Content Management</li><li>Video Editing</li><li>Social Media Content</li><li>Visual Storytelling</li><li>Creative Thinking</li><li>Problem Solving</li></ul></div>
+    <div class="sk glass"><h3>Tools</h3><ul>
+      <li>Canva</li><li>VN Video Editor</li><li>CapCut</li><li>Meta Business Suite</li><li>Microsoft Office</li></ul></div>
+    <div class="sk glass"><h3>AI &amp; Editing</h3><ul>
+      <li>AI Video Creation</li><li>AI Content Creation</li><li>Photo Editing &amp; Retouching</li></ul></div>
+  </div>
+</section>
+
+<section id="work">
+  <h2 class="glass">Work</h2>
+  <div class="reels">
+    <a class="reel glass" href="https://www.facebook.com/reel/2825584967818512" target="_blank" rel="noopener"><span></span><div class="play glass">▶</div><div><b>Reel 1</b><small>Watch on Facebook</small></div></a>
+    <a class="reel glass" href="https://www.facebook.com/reel/1305895168008705" target="_blank" rel="noopener"><span></span><div class="play glass">▶</div><div><b>Reel 2</b><small>Watch on Facebook</small></div></a>
+    <a class="reel glass" href="https://www.facebook.com/reel/2243025849799568" target="_blank" rel="noopener"><span></span><div class="play glass">▶</div><div><b>Reel 3</b><small>Watch on Facebook</small></div></a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="glass">Contact</h2>
+  <div class="contact">
+    <a class="c glass" href="mailto:janamost1234@gmail.com"><span>Email</span><strong>janamost1234@gmail.com</strong></a>
+    <a class="c glass wa" href="https://wa.me/201212054769" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+20 121 205 4769</strong></a>
+  </div>
+</section>
+
+<footer>© Jana Mostafa</footer>
+
+<script>
+(function(){
+  /* glass lens that follows the pointer over the name */
+  var hero=document.getElementById('heroIn'),lens=document.getElementById('lens');
+  var tx=0,ty=0,x=0,y=0,active=false;
+  function box(){return hero.getBoundingClientRect()}
+  function park(){var b=box();tx=b.width*.55;ty=b.height*.5}
+  park();x=tx;y=ty;
+  document.addEventListener('pointermove',function(e){var b=box();active=true;tx=e.clientX-b.left;ty=e.clientY-b.top});
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function tick(t){
+    if(!active&&!reduce){var b=box();tx=b.width*(.5+.3*Math.sin(t/1700));ty=b.height*(.5+.18*Math.cos(t/1300))}
+    x+=(tx-x)*.14;y+=(ty-y)*.14;
+    lens.style.left=x+'px';lens.style.top=y+'px';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  /* soft scroll motion blur, strength set by --motion */
+  if(!reduce){
+    var root=document.documentElement,MAX=10*parseFloat(getComputedStyle(root).getPropertyValue('--motion')||.4),
+        last=window.scrollY,cur=0;
+    (function mb(){
+      var y=window.scrollY,v=Math.abs(y-last);last=y;
+      cur+=(Math.min(1,v/55)-cur)*.14;
+      if(cur<.015){if(root.classList.contains('moving')){root.classList.remove('moving');root.style.removeProperty('--mb')}}
+      else{root.classList.add('moving');root.style.setProperty('--mb',(cur*MAX).toFixed(2)+'px')}
+      requestAnimationFrame(mb);
+    })();
+  }
+  /* nav highlight */
+  var links=document.querySelectorAll('.nav a');
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){
+    if(en.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id)})}
+  })},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section').forEach(function(s){io.observe(s)});
+})();
+</script>
+</body>
+</html>
